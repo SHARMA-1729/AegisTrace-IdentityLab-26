@@ -717,6 +717,58 @@
             ]
           },
           {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "LLM API Credential",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "LLM API Credential"
+            ],
+            "id": "f24cb136-b4b9-4e57-b1fe-927f7848996c",
+            "source": {
+              "x": 1210,
+              "y": 70
+            },
+            "target": {
+              "cell": "737d645f-2e3f-475a-b3b5-c864d8a38dbb",
+              "port": "d3d04dc6-e284-484f-bdb2-39be19f4ff1f"
+            },
+            "vertices": [
+              {
+                "x": 1560,
+                "y": 110
+              }
+            ]
+          },
+          {
             "position": {
               "x": 770,
               "y": 330
