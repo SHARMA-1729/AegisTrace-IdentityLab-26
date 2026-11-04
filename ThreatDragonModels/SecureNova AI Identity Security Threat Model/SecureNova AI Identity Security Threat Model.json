@@ -351,53 +351,6 @@
             ]
           },
           {
-            "shape": "flow",
-            "attrs": {
-              "line": {
-                "stroke": "#333333",
-                "targetMarker": {
-                  "name": "block"
-                },
-                "sourceMarker": {
-                  "name": ""
-                },
-                "strokeDasharray": null
-              }
-            },
-            "width": 200,
-            "height": 100,
-            "zIndex": 10,
-            "connector": "smooth",
-            "data": {
-              "type": "tm.Flow",
-              "name": "Vector Search Query",
-              "description": "The RAG Pipeline sends a semantic vector search query to the Vector Database / Knowledge Base to retrieve relevant knowledge chunks matching the user's query.",
-              "outOfScope": false,
-              "isTrustBoundary": false,
-              "reasonOutOfScope": "",
-              "hasOpenThreats": false,
-              "isBidirectional": false,
-              "isEncrypted": true,
-              "isPublicNetwork": false,
-              "protocol": "HTTPS",
-              "threats": [],
-              "trustBoundaryIds": []
-            },
-            "labels": [
-              "Vector Search Query"
-            ],
-            "id": "d6c08b61-6787-4b29-a1b1-a56d0a32f13f",
-            "source": {
-              "x": 980,
-              "y": 560
-            },
-            "target": {
-              "cell": "11753410-0b34-454b-9f5f-71bc846905db",
-              "port": "35adf68e-0b53-4406-b02e-1ccfa1c5700c"
-            },
-            "vertices": []
-          },
-          {
             "position": {
               "x": 770,
               "y": 330
@@ -1120,8 +1073,8 @@
           },
           {
             "position": {
-              "x": 940,
-              "y": 476
+              "x": 930,
+              "y": 466
             },
             "size": {
               "width": 80,
@@ -1240,7 +1193,7 @@
           },
           {
             "position": {
-              "x": 920,
+              "x": 930,
               "y": 676
             },
             "size": {
@@ -1360,7 +1313,8 @@
               "storesCredentials": false,
               "storesInventory": false,
               "threats": []
-            }
+            },
+            "children": []
           },
           {
             "position": {
@@ -1724,6 +1678,104 @@
               "storesCredentials": false,
               "storesInventory": false,
               "threats": []
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 22,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Data Flow",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "Data Flow"
+            ],
+            "id": "d62fd6be-6207-4ddb-ac1a-e2af54d0f459",
+            "source": {
+              "cell": "11753410-0b34-454b-9f5f-71bc846905db",
+              "port": "0d1c2a71-d60e-47a8-b154-f0ce521da306"
+            },
+            "target": {
+              "cell": "4108c95e-302b-4a5a-ae04-3cb8db080ed7",
+              "port": "63a333e6-c06c-485a-8fe8-ba33eb142f09"
+            },
+            "vertices": [
+              {
+                "x": 730,
+                "y": 680
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 23,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Vector Search Query",
+              "description": "RAG Pipeline sends a semantic search query to retrieve relevant knowledge chunks.",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "Vector Search Query"
+            ],
+            "id": "3ad9a88f-3dbb-430d-b23d-5bc748e47e0f",
+            "source": {
+              "x": 970,
+              "y": 540
+            },
+            "target": {
+              "cell": "11753410-0b34-454b-9f5f-71bc846905db",
+              "port": "35adf68e-0b53-4406-b02e-1ccfa1c5700c"
             }
           }
         ],
