@@ -233,7 +233,7 @@
               "hasOpenThreats": false,
               "isBidirectional": false,
               "isEncrypted": true,
-              "isPublicNetwork": false,
+              "isPublicNetwork": true,
               "protocol": "HTTPS",
               "threats": [],
               "trustBoundaryIds": []
@@ -731,7 +731,7 @@
           },
           {
             "position": {
-              "x": 1120,
+              "x": 1330,
               "y": 330
             },
             "size": {
