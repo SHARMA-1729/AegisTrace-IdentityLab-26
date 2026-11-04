@@ -1374,8 +1374,8 @@
           },
           {
             "position": {
-              "x": 1174,
-              "y": 476
+              "x": 444.25,
+              "y": 486
             },
             "size": {
               "width": 90,
@@ -1494,8 +1494,8 @@
           },
           {
             "position": {
-              "x": 1199,
-              "y": 626
+              "x": 459.25,
+              "y": 646
             },
             "size": {
               "width": 60,
@@ -1613,9 +1613,55 @@
             }
           },
           {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 23,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Vector Search Query",
+              "description": "RAG Pipeline sends a semantic search query to retrieve relevant knowledge chunks.",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "Vector Search Query"
+            ],
+            "id": "3ad9a88f-3dbb-430d-b23d-5bc748e47e0f",
+            "source": {
+              "x": 980,
+              "y": 550
+            },
+            "target": {
+              "cell": "11753410-0b34-454b-9f5f-71bc846905db",
+              "port": "35adf68e-0b53-4406-b02e-1ccfa1c5700c"
+            }
+          },
+          {
             "position": {
-              "x": 1159,
-              "y": 727
+              "x": 429,
+              "y": 746
             },
             "size": {
               "width": 120,
@@ -1718,12 +1764,12 @@
                 }
               ]
             },
-            "id": "a64963fc-f9f2-4431-908e-b0a3226338b6",
-            "zIndex": 21,
+            "id": "a7c45633-2837-495a-9287-c57d390d5dd1",
+            "zIndex": 24,
             "data": {
               "type": "tm.Store",
               "name": "Customer Database",
-              "description": "Stores customer profiles, account information, service requests, and other sensitive customer records.",
+              "description": "Stores customer profiles, account information, conversation history, and other sensitive customer data. Access is restricted to authorized internal REST APIs.",
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
@@ -1734,52 +1780,6 @@
               "storesCredentials": false,
               "storesInventory": false,
               "threats": []
-            }
-          },
-          {
-            "shape": "flow",
-            "attrs": {
-              "line": {
-                "stroke": "#333333",
-                "targetMarker": {
-                  "name": "block"
-                },
-                "sourceMarker": {
-                  "name": ""
-                },
-                "strokeDasharray": null
-              }
-            },
-            "width": 200,
-            "height": 100,
-            "zIndex": 23,
-            "connector": "smooth",
-            "data": {
-              "type": "tm.Flow",
-              "name": "Vector Search Query",
-              "description": "RAG Pipeline sends a semantic search query to retrieve relevant knowledge chunks.",
-              "outOfScope": false,
-              "isTrustBoundary": false,
-              "reasonOutOfScope": "",
-              "hasOpenThreats": false,
-              "isBidirectional": false,
-              "isEncrypted": true,
-              "isPublicNetwork": false,
-              "protocol": "HTTPS",
-              "threats": [],
-              "trustBoundaryIds": []
-            },
-            "labels": [
-              "Vector Search Query"
-            ],
-            "id": "3ad9a88f-3dbb-430d-b23d-5bc748e47e0f",
-            "source": {
-              "x": 980,
-              "y": 550
-            },
-            "target": {
-              "cell": "11753410-0b34-454b-9f5f-71bc846905db",
-              "port": "35adf68e-0b53-4406-b02e-1ccfa1c5700c"
             }
           }
         ],
