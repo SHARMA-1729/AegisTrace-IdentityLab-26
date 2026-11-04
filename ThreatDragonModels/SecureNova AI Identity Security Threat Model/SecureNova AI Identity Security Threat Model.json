@@ -613,6 +613,58 @@
             ]
           },
           {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "M2M Access Token",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "M2M Access Token"
+            ],
+            "id": "7aea37de-3e06-4a86-9433-b4f6d0dec45f",
+            "source": {
+              "x": 800,
+              "y": 330
+            },
+            "target": {
+              "cell": "da46d60f-be74-4d8b-960c-20befe2d70a0",
+              "port": "63a333e6-c06c-485a-8fe8-ba33eb142f09"
+            },
+            "vertices": [
+              {
+                "x": 830,
+                "y": 200
+              }
+            ]
+          },
+          {
             "position": {
               "x": 770,
               "y": 330
@@ -971,7 +1023,7 @@
           },
           {
             "position": {
-              "x": 915,
+              "x": 930,
               "y": 100.00000000000017
             },
             "size": {
