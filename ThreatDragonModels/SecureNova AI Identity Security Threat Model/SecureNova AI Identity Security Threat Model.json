@@ -937,7 +937,7 @@
             },
             "attrs": {
               "text": {
-                "text": "RAG Pipeline"
+                "text": "RAG Pipeline (RAG Service Identity)"
               },
               "body": {
                 "stroke": "#333333",
@@ -1033,7 +1033,7 @@
             "zIndex": 17,
             "data": {
               "type": "tm.Process",
-              "name": "RAG Pipeline",
+              "name": "RAG Pipeline (RAG Service Identity)",
               "description": "Retrieval-Augmented Generation service that retrieves relevant knowledge chunks from the knowledge base and returns contextual information to the AI Agent.",
               "outOfScope": false,
               "isTrustBoundary": false,
