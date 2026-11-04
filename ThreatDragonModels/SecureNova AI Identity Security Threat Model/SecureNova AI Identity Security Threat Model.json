@@ -328,17 +328,59 @@
                 "x": 440,
                 "y": 114
               }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Authentication Token Response",
+              "description": "Auth0 returns an ID token and access token to the authenticated human user after successful authentication.",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "Authentication Token Response"
             ],
-            "tools": {
-              "items": [
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead"
-              ],
-              "name": null
-            }
+            "id": "e4a7a9b4-1e9f-485e-b996-df554915c33e",
+            "source": {
+              "x": 260,
+              "y": 140
+            },
+            "target": {
+              "cell": "a7130575-97dc-4621-8062-be878b4f4d78",
+              "port": "b3c4690a-1fa6-4ed9-b8ca-a67d72298683"
+            },
+            "vertices": [
+              {
+                "x": 410,
+                "y": 140
+              }
+            ]
           }
         ],
         "description": "Data flow diagram showing human and non-human identities, Auth0 authentication, AI agent interactions, LLM API, RAG pipeline, MCP server, internal REST APIs, and security trust boundaries."
