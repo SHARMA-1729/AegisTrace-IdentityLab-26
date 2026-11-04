@@ -159,12 +159,59 @@
             }
           },
           {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Data Flow",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "Data Flow"
+            ],
+            "id": "79124d72-74a7-4110-91bb-9b6d40b4fd52",
+            "source": {
+              "x": 450,
+              "y": 160
+            },
+            "target": {
+              "x": 790,
+              "y": 160
+            },
+            "vertices": []
+          },
+          {
             "position": {
-              "x": 440,
+              "x": 420,
               "y": 330
             },
             "size": {
-              "width": 112.5,
+              "width": 60,
               "height": 60
             },
             "attrs": {
@@ -178,7 +225,7 @@
               }
             },
             "visible": true,
-            "shape": "actor",
+            "shape": "process",
             "ports": {
               "groups": {
                 "top": {
@@ -245,33 +292,36 @@
               "items": [
                 {
                   "group": "top",
-                  "id": "7615566b-9ff8-4117-b4a0-41413ea84bba"
+                  "id": "ffed6c7f-5d14-4007-9cc3-5b72e9c0804d"
                 },
                 {
                   "group": "right",
-                  "id": "e6f3c333-39d7-485a-abb5-3de8d62c5604"
+                  "id": "d3d04dc6-e284-484f-bdb2-39be19f4ff1f"
                 },
                 {
                   "group": "bottom",
-                  "id": "1ae1c9fb-60aa-47c6-bc3c-5bf2e9e49fde"
+                  "id": "b3c4690a-1fa6-4ed9-b8ca-a67d72298683"
                 },
                 {
                   "group": "left",
-                  "id": "cbea267f-0f36-4192-bb3f-2e74de130d63"
+                  "id": "63a333e6-c06c-485a-8fe8-ba33eb142f09"
                 }
               ]
             },
-            "id": "ad78022f-c857-4a69-9796-482093b25f43",
-            "zIndex": 3,
+            "id": "cf732453-8627-4589-b057-bce6aee16a1b",
+            "zIndex": 11,
             "data": {
-              "type": "tm.Actor",
+              "type": "tm.Process",
               "name": "Auth0",
-              "description": "Identity provider used by SecureNova for human user authentication and OAuth 2.0 authorization, including token issuance for machine-to-machine clients.",
-              "isTrustBoundary": false,
+              "description": "Auth0 authenticates human users using OIDC and issues identity and access tokens. It also provides OAuth 2.0 authorization services for machine-to-machine clients.",
               "outOfScope": false,
+              "isTrustBoundary": false,
               "reasonOutOfScope": "",
               "hasOpenThreats": false,
-              "providesAuthentication": false,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
               "threats": []
             }
           }
