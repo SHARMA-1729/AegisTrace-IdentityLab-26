@@ -684,7 +684,7 @@
           },
           {
             "position": {
-              "x": 1099,
+              "x": 1059,
               "y": 330
             },
             "size": {
@@ -800,13 +800,6 @@
               "isWebApplication": false,
               "privilegeLevel": "Model inference only",
               "threats": []
-            },
-            "tools": {
-              "items": [
-                "boundary",
-                "button-remove"
-              ],
-              "name": null
             }
           }
         ],
