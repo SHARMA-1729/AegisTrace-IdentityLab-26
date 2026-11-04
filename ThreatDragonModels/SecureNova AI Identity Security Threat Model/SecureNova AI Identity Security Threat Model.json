@@ -305,9 +305,9 @@
               "reasonOutOfScope": "",
               "hasOpenThreats": false,
               "isBidirectional": false,
-              "isEncrypted": false,
-              "isPublicNetwork": false,
-              "protocol": "",
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
               "threats": [],
               "trustBoundaryIds": []
             },
@@ -328,7 +328,17 @@
                 "x": 440,
                 "y": 114
               }
-            ]
+            ],
+            "tools": {
+              "items": [
+                "boundary",
+                "button-remove",
+                "vertices",
+                "source-arrowhead",
+                "target-arrowhead"
+              ],
+              "name": null
+            }
           }
         ],
         "description": "Data flow diagram showing human and non-human identities, Auth0 authentication, AI agent interactions, LLM API, RAG pipeline, MCP server, internal REST APIs, and security trust boundaries."
