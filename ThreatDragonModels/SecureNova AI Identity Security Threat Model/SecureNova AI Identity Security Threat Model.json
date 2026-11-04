@@ -1,5 +1,5 @@
 {
-  "version": "2.3.0",
+  "version": "2.6.2",
   "summary": {
     "title": "SecureNova AI Identity Security Threat Model",
     "owner": "Saurav Sharma",
@@ -15,7 +15,7 @@
         "diagramType": "STRIDE",
         "placeholder": "New STRIDE diagram description",
         "thumbnail": "./public/content/images/thumbnail.stride.jpg",
-        "version": "2.3.0",
+        "version": "2.6.2",
         "cells": [
           {
             "position": {
@@ -39,6 +39,123 @@
               "type": "tm.Text",
               "name": "A new blank model template",
               "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 352.5,
+              "y": 89.99999999999994
+            },
+            "size": {
+              "width": 110,
+              "height": 50
+            },
+            "attrs": {
+              "text": {
+                "text": "Human User"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "7615566b-9ff8-4117-b4a0-41413ea84bba"
+                },
+                {
+                  "group": "right",
+                  "id": "e6f3c333-39d7-485a-abb5-3de8d62c5604"
+                },
+                {
+                  "group": "bottom",
+                  "id": "1ae1c9fb-60aa-47c6-bc3c-5bf2e9e49fde"
+                },
+                {
+                  "group": "left",
+                  "id": "cbea267f-0f36-4192-bb3f-2e74de130d63"
+                }
+              ]
+            },
+            "id": "78ad080c-5c76-4a1b-94a4-0c494d234754",
+            "zIndex": 2,
+            "data": {
+              "type": "tm.Actor",
+              "name": "Human User",
+              "description": "External human identity that accesses SecureNova's AI-powered customer service platform and authenticates through Auth0 using OpenID Connect (OIDC) and OAuth 2.0.",
+              "isTrustBoundary": false,
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "providesAuthentication": false,
+              "threats": []
             }
           }
         ],
