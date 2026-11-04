@@ -88,15 +88,6 @@
                 "ea18073d-8729-4c1c-bf18-13167c1d73f1",
                 "a7c45633-2837-495a-9287-c57d390d5dd1"
               ]
-            },
-            "tools": {
-              "items": [
-                "boundary",
-                "button-remove",
-                "boundary",
-                "button-remove"
-              ],
-              "name": null
             }
           },
           {
@@ -219,30 +210,6 @@
             "target": {
               "x": 400,
               "y": 410
-            }
-          },
-          {
-            "position": {
-              "x": 190,
-              "y": 10
-            },
-            "size": {
-              "width": 190,
-              "height": 60
-            },
-            "attrs": {
-              "text": {
-                "text": "A new blank model template"
-              }
-            },
-            "visible": true,
-            "shape": "td-text-block",
-            "zIndex": 1,
-            "id": "f3ba6ded-7614-456e-b6b8-76d9f227e9de",
-            "data": {
-              "type": "tm.Text",
-              "name": "A new blank model template",
-              "hasOpenThreats": false
             }
           },
           {
@@ -2527,6 +2494,30 @@
             "data": {
               "type": "tm.Text",
               "name": "Agent Layer",
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 29,
+              "y": 40.00000000000006
+            },
+            "size": {
+              "width": 210,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "SecureNova AI Identity Architecture"
+              }
+            },
+            "visible": true,
+            "shape": "td-text-block",
+            "id": "7b507dcb-661a-44e1-b6c8-cbe5df230f02",
+            "zIndex": 32,
+            "data": {
+              "type": "tm.Text",
+              "name": "SecureNova AI Identity Architecture",
               "hasOpenThreats": false
             }
           }
