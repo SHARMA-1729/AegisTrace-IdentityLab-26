@@ -88,6 +88,58 @@
             }
           },
           {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Authentication Token Response",
+              "description": "Auth0 returns an ID token and access token to the authenticated human user after successful authentication.",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "Authentication Token Response"
+            ],
+            "id": "a8fd8eed-4929-41ec-b285-fdcb9754d35c",
+            "source": {
+              "x": 800,
+              "y": 330
+            },
+            "target": {
+              "cell": "05cd2482-f340-4269-b1bb-c751612ce2c7",
+              "port": "e6f3c333-39d7-485a-abb5-3de8d62c5604"
+            },
+            "vertices": [
+              {
+                "x": 580,
+                "y": 330
+              }
+            ]
+          },
+          {
             "position": {
               "x": 770,
               "y": 330
