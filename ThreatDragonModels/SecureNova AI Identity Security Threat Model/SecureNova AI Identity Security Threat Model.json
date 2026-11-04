@@ -266,7 +266,7 @@
             "data": {
               "type": "tm.Process",
               "name": "Auth0",
-              "description": "Auth0 authenticates human users using OIDC and issues identity and access tokens. It also provides OAuth 2.0 authorization services for machine-to-machine clients.",
+              "description": "Identity provider used by SecureNova for human user authentication and OAuth 2.0 authorization, including token issuance for machine-to-machine clients.",
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
@@ -276,6 +276,13 @@
               "isWebApplication": false,
               "privilegeLevel": "",
               "threats": []
+            },
+            "tools": {
+              "items": [
+                "boundary",
+                "button-remove"
+              ],
+              "name": null
             }
           }
         ],
