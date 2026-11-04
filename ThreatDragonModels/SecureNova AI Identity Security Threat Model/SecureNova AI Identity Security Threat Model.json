@@ -50,13 +50,76 @@
                 "cf732453-8627-4589-b057-bce6aee16a1b",
                 "05cd2482-f340-4269-b1bb-c751612ce2c7"
               ]
+            }
+          },
+          {
+            "position": {
+              "x": 140,
+              "y": 660.0000000000016
             },
-            "tools": {
-              "items": [
-                "boundary",
-                "button-remove"
+            "size": {
+              "width": 1190,
+              "height": 310
+            },
+            "attrs": {
+              "label": {
+                "text": "Trust Boundary"
+              }
+            },
+            "visible": true,
+            "shape": "trust-boundary-box",
+            "id": "c8fe2685-e98f-4ec8-bd83-a4c1351b552f",
+            "zIndex": -1,
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "Trust Boundary",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false,
+              "crossingFlows": [
+                "8707b167-f8ed-4d34-987e-e3b7ed5115f4",
+                "4f0b69ca-27d9-40c3-9596-f3e5de315f39",
+                "ddde0022-059c-4de0-a6fe-c5f873224961",
+                "3ad9a88f-3dbb-430d-b23d-5bc748e47e0f",
+                "67528ecf-c1cd-4d6e-a5e2-5da4e0260ccf"
               ],
-              "name": null
+              "containedElements": [
+                "11753410-0b34-454b-9f5f-71bc846905db",
+                "ea18073d-8729-4c1c-bf18-13167c1d73f1",
+                "a7c45633-2837-495a-9287-c57d390d5dd1"
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 1265,
+              "y": 280
+            },
+            "size": {
+              "width": 220,
+              "height": 140
+            },
+            "attrs": {
+              "label": {
+                "text": "Trust Boundary"
+              }
+            },
+            "visible": true,
+            "shape": "trust-boundary-box",
+            "id": "dcb19570-a1a7-4ae1-ad6a-2bfa48af4a92",
+            "zIndex": -1,
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "Trust Boundary",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false,
+              "crossingFlows": [
+                "c4817ad7-259c-4495-8910-11ea5318a7d1"
+              ],
+              "containedElements": [
+                "dc71799b-d5e9-4859-87b2-c16b3c09f6a7"
+              ]
             }
           },
           {
@@ -282,7 +345,9 @@
               "isPublicNetwork": true,
               "protocol": "HTTPS",
               "threats": [],
-              "trustBoundaryIds": []
+              "trustBoundaryIds": [
+                "dcb19570-a1a7-4ae1-ad6a-2bfa48af4a92"
+              ]
             },
             "labels": [
               "LLM API Request"
@@ -424,58 +489,6 @@
             "connector": "smooth",
             "data": {
               "type": "tm.Flow",
-              "name": "Retrieved Knowledge Chunks",
-              "description": "Vector Database returns matching knowledge chunks to the RAG Pipeline.",
-              "outOfScope": false,
-              "isTrustBoundary": false,
-              "reasonOutOfScope": "",
-              "hasOpenThreats": false,
-              "isBidirectional": false,
-              "isEncrypted": true,
-              "isPublicNetwork": false,
-              "protocol": "HTTPS",
-              "threats": [],
-              "trustBoundaryIds": []
-            },
-            "labels": [
-              "Retrieved Knowledge Chunks"
-            ],
-            "id": "ddde0022-059c-4de0-a6fe-c5f873224961",
-            "source": {
-              "x": 1000,
-              "y": 750
-            },
-            "target": {
-              "cell": "4108c95e-302b-4a5a-ae04-3cb8db080ed7",
-              "port": "b3c4690a-1fa6-4ed9-b8ca-a67d72298683"
-            },
-            "vertices": [
-              {
-                "x": 800,
-                "y": 720
-              }
-            ]
-          },
-          {
-            "shape": "flow",
-            "attrs": {
-              "line": {
-                "stroke": "#333333",
-                "targetMarker": {
-                  "name": "block"
-                },
-                "sourceMarker": {
-                  "name": ""
-                },
-                "strokeDasharray": null
-              }
-            },
-            "width": 200,
-            "height": 100,
-            "zIndex": 10,
-            "connector": "smooth",
-            "data": {
-              "type": "tm.Flow",
               "name": "M2M Access Token",
               "description": "",
               "outOfScope": false,
@@ -539,7 +552,9 @@
               "isPublicNetwork": true,
               "protocol": "HTTPS",
               "threats": [],
-              "trustBoundaryIds": []
+              "trustBoundaryIds": [
+                "c8fe2685-e98f-4ec8-bd83-a4c1351b552f"
+              ]
             },
             "labels": [
               "Authorized API Request"
@@ -585,7 +600,9 @@
               "isPublicNetwork": true,
               "protocol": "HTTPS",
               "threats": [],
-              "trustBoundaryIds": []
+              "trustBoundaryIds": [
+                "c8fe2685-e98f-4ec8-bd83-a4c1351b552f"
+              ]
             },
             "labels": [
               "Customer Data Response"
@@ -763,6 +780,60 @@
               {
                 "x": 480,
                 "y": 160
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Retrieved Knowledge Chunks",
+              "description": "Vector Database returns matching knowledge chunks to the RAG Pipeline.",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": [],
+              "trustBoundaryIds": [
+                "c8fe2685-e98f-4ec8-bd83-a4c1351b552f"
+              ]
+            },
+            "labels": [
+              "Retrieved Knowledge Chunks"
+            ],
+            "id": "ddde0022-059c-4de0-a6fe-c5f873224961",
+            "source": {
+              "cell": "11753410-0b34-454b-9f5f-71bc846905db",
+              "port": "f7d04284-237a-4072-849a-c9c317b26b6e"
+            },
+            "target": {
+              "cell": "4108c95e-302b-4a5a-ae04-3cb8db080ed7",
+              "port": "b3c4690a-1fa6-4ed9-b8ca-a67d72298683"
+            },
+            "vertices": [
+              {
+                "x": 800,
+                "y": 720
               }
             ]
           },
@@ -1489,8 +1560,8 @@
           },
           {
             "position": {
-              "x": 940,
-              "y": 686
+              "x": 950,
+              "y": 786
             },
             "size": {
               "width": 120,
@@ -1883,7 +1954,9 @@
               "isPublicNetwork": false,
               "protocol": "HTTPS",
               "threats": [],
-              "trustBoundaryIds": []
+              "trustBoundaryIds": [
+                "c8fe2685-e98f-4ec8-bd83-a4c1351b552f"
+              ]
             },
             "labels": [
               "Vector Search Query"
@@ -2101,7 +2174,9 @@
               "isPublicNetwork": true,
               "protocol": "HTTPS",
               "threats": [],
-              "trustBoundaryIds": []
+              "trustBoundaryIds": [
+                "c8fe2685-e98f-4ec8-bd83-a4c1351b552f"
+              ]
             },
             "labels": [
               "Customer Data Query"
