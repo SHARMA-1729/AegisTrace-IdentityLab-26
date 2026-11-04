@@ -348,17 +348,54 @@
                 "x": 750,
                 "y": 500
               }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Vector Search Query",
+              "description": "The RAG Pipeline sends a semantic vector search query to the Vector Database / Knowledge Base to retrieve relevant knowledge chunks matching the user's query.",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "Vector Search Query"
             ],
-            "tools": {
-              "items": [
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead"
-              ],
-              "name": null
-            }
+            "id": "d6c08b61-6787-4b29-a1b1-a56d0a32f13f",
+            "source": {
+              "x": 980,
+              "y": 560
+            },
+            "target": {
+              "cell": "11753410-0b34-454b-9f5f-71bc846905db",
+              "port": "35adf68e-0b53-4406-b02e-1ccfa1c5700c"
+            },
+            "vertices": []
           },
           {
             "position": {
@@ -1204,7 +1241,7 @@
           {
             "position": {
               "x": 920,
-              "y": 626
+              "y": 676
             },
             "size": {
               "width": 120,
