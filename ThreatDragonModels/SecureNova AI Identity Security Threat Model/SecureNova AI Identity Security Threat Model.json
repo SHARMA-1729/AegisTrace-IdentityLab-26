@@ -43,8 +43,8 @@
           },
           {
             "position": {
-              "x": 800,
-              "y": 320
+              "x": 900,
+              "y": 330
             },
             "size": {
               "width": 112.5,
@@ -156,13 +156,6 @@
               "hasOpenThreats": false,
               "providesAuthentication": false,
               "threats": []
-            },
-            "tools": {
-              "items": [
-                "boundary",
-                "button-remove"
-              ],
-              "name": null
             }
           }
         ],
