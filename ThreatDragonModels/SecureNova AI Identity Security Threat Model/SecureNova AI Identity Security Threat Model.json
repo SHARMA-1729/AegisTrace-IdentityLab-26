@@ -1181,7 +1181,7 @@
             },
             "attrs": {
               "text": {
-                "text": "MCP Server"
+                "text": "MCP Server (Service Identity)"
               },
               "body": {
                 "stroke": "#333333",
@@ -1277,7 +1277,7 @@
             "zIndex": 19,
             "data": {
               "type": "tm.Process",
-              "name": "MCP Server",
+              "name": "MCP Server (Service Identity)",
               "description": "Model Context Protocol server that exposes controlled tools to the AI Agent and invokes authorized internal services on behalf of authenticated users.",
               "outOfScope": false,
               "isTrustBoundary": false,
