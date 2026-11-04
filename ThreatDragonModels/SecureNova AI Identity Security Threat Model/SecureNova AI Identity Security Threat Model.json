@@ -206,6 +206,53 @@
             ]
           },
           {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Prompt + API Authentication Credential",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "Prompt + API Authentication Credential"
+            ],
+            "id": "c4817ad7-259c-4495-8910-11ea5318a7d1",
+            "source": {
+              "x": 1010,
+              "y": 360
+            },
+            "target": {
+              "cell": "dc71799b-d5e9-4859-87b2-c16b3c09f6a7",
+              "port": "63a333e6-c06c-485a-8fe8-ba33eb142f09"
+            },
+            "vertices": []
+          },
+          {
             "position": {
               "x": 770,
               "y": 330
@@ -684,7 +731,7 @@
           },
           {
             "position": {
-              "x": 1059,
+              "x": 1120,
               "y": 330
             },
             "size": {
