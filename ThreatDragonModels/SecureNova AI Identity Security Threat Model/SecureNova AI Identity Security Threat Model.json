@@ -1049,7 +1049,7 @@
           {
             "position": {
               "x": 920,
-              "y": 566
+              "y": 556
             },
             "size": {
               "width": 120,
@@ -1168,13 +1168,6 @@
               "storesCredentials": false,
               "storesInventory": false,
               "threats": []
-            },
-            "tools": {
-              "items": [
-                "boundary",
-                "button-remove"
-              ],
-              "name": null
             }
           }
         ],
