@@ -63,7 +63,7 @@
             },
             "attrs": {
               "label": {
-                "text": "AI Agent & Orchestration Zone"
+                "text": "Internal API Layer"
               }
             },
             "visible": true,
@@ -72,7 +72,7 @@
             "zIndex": -1,
             "data": {
               "type": "tm.BoundaryBox",
-              "name": "AI Agent & Orchestration Zone",
+              "name": "Internal API Layer",
               "description": "",
               "isTrustBoundary": true,
               "hasOpenThreats": false,
@@ -88,6 +88,15 @@
                 "ea18073d-8729-4c1c-bf18-13167c1d73f1",
                 "a7c45633-2837-495a-9287-c57d390d5dd1"
               ]
+            },
+            "tools": {
+              "items": [
+                "boundary",
+                "button-remove",
+                "boundary",
+                "button-remove"
+              ],
+              "name": null
             }
           },
           {
@@ -2495,6 +2504,30 @@
                 "target-arrowhead"
               ],
               "name": null
+            }
+          },
+          {
+            "position": {
+              "x": 380,
+              "y": 426
+            },
+            "size": {
+              "width": 112.5,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Agent Layer"
+              }
+            },
+            "visible": true,
+            "shape": "td-text-block",
+            "id": "df2fc8b0-19a4-4a9d-9307-f83b4e8b3e56",
+            "zIndex": 31,
+            "data": {
+              "type": "tm.Text",
+              "name": "Agent Layer",
+              "hasOpenThreats": false
             }
           }
         ],
