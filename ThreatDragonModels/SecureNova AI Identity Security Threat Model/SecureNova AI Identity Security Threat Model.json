@@ -290,8 +290,8 @@
             ],
             "id": "d8d9108c-ed12-4b86-bcd9-156ad2aa7dc2",
             "source": {
-              "x": 970,
-              "y": 390
+              "x": 980,
+              "y": 400
             },
             "target": {
               "cell": "4108c95e-302b-4a5a-ae04-3cb8db080ed7",
@@ -336,8 +336,8 @@
             ],
             "id": "eb4f7a9a-9c44-454c-9594-ae806fd49e89",
             "source": {
-              "x": 930,
-              "y": 520
+              "cell": "4108c95e-302b-4a5a-ae04-3cb8db080ed7",
+              "port": "63a333e6-c06c-485a-8fe8-ba33eb142f09"
             },
             "target": {
               "cell": "737d645f-2e3f-475a-b3b5-c864d8a38dbb",
@@ -345,8 +345,64 @@
             },
             "vertices": [
               {
-                "x": 750,
-                "y": 500
+                "x": 880,
+                "y": 570
+              },
+              {
+                "x": 760,
+                "y": 510
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Retrieved Knowledge Chunks",
+              "description": "Vector Database returns matching knowledge chunks to the RAG Pipeline.",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "Retrieved Knowledge Chunks"
+            ],
+            "id": "ddde0022-059c-4de0-a6fe-c5f873224961",
+            "source": {
+              "x": 1000,
+              "y": 750
+            },
+            "target": {
+              "cell": "4108c95e-302b-4a5a-ae04-3cb8db080ed7",
+              "port": "b3c4690a-1fa6-4ed9-b8ca-a67d72298683"
+            },
+            "vertices": [
+              {
+                "x": 800,
+                "y": 720
               }
             ]
           },
@@ -1073,8 +1129,8 @@
           },
           {
             "position": {
-              "x": 930,
-              "y": 466
+              "x": 940,
+              "y": 476
             },
             "size": {
               "width": 80,
@@ -1193,8 +1249,8 @@
           },
           {
             "position": {
-              "x": 930,
-              "y": 676
+              "x": 940,
+              "y": 686
             },
             "size": {
               "width": 120,
@@ -1438,8 +1494,8 @@
           },
           {
             "position": {
-              "x": 1189,
-              "y": 616
+              "x": 1199,
+              "y": 626
             },
             "size": {
               "width": 60,
@@ -1696,58 +1752,6 @@
             },
             "width": 200,
             "height": 100,
-            "zIndex": 22,
-            "connector": "smooth",
-            "data": {
-              "type": "tm.Flow",
-              "name": "Data Flow",
-              "description": "",
-              "outOfScope": false,
-              "isTrustBoundary": false,
-              "reasonOutOfScope": "",
-              "hasOpenThreats": false,
-              "isBidirectional": false,
-              "isEncrypted": false,
-              "isPublicNetwork": false,
-              "protocol": "",
-              "threats": [],
-              "trustBoundaryIds": []
-            },
-            "labels": [
-              "Data Flow"
-            ],
-            "id": "d62fd6be-6207-4ddb-ac1a-e2af54d0f459",
-            "source": {
-              "cell": "11753410-0b34-454b-9f5f-71bc846905db",
-              "port": "0d1c2a71-d60e-47a8-b154-f0ce521da306"
-            },
-            "target": {
-              "cell": "4108c95e-302b-4a5a-ae04-3cb8db080ed7",
-              "port": "63a333e6-c06c-485a-8fe8-ba33eb142f09"
-            },
-            "vertices": [
-              {
-                "x": 730,
-                "y": 680
-              }
-            ]
-          },
-          {
-            "shape": "flow",
-            "attrs": {
-              "line": {
-                "stroke": "#333333",
-                "targetMarker": {
-                  "name": "block"
-                },
-                "sourceMarker": {
-                  "name": ""
-                },
-                "strokeDasharray": null
-              }
-            },
-            "width": 200,
-            "height": 100,
             "zIndex": 23,
             "connector": "smooth",
             "data": {
@@ -1770,8 +1774,8 @@
             ],
             "id": "3ad9a88f-3dbb-430d-b23d-5bc748e47e0f",
             "source": {
-              "x": 970,
-              "y": 540
+              "x": 980,
+              "y": 550
             },
             "target": {
               "cell": "11753410-0b34-454b-9f5f-71bc846905db",
