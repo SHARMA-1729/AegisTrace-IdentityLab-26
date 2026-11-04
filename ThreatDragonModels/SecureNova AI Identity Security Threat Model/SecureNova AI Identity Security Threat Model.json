@@ -557,6 +557,62 @@
             ]
           },
           {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "M2M Token Request",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "M2M Token Request"
+            ],
+            "id": "74790799-0344-4652-94ee-59f40d1030eb",
+            "source": {
+              "x": 990,
+              "y": 210
+            },
+            "target": {
+              "cell": "cf732453-8627-4589-b057-bce6aee16a1b",
+              "port": "d3d04dc6-e284-484f-bdb2-39be19f4ff1f"
+            },
+            "vertices": [
+              {
+                "x": 1070,
+                "y": 210
+              },
+              {
+                "x": 900,
+                "y": 310
+              }
+            ]
+          },
+          {
             "position": {
               "x": 770,
               "y": 330
