@@ -140,6 +140,62 @@
             ]
           },
           {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "User Query + Access Token",
+              "description": "Authenticated human user submits a customer service query and access token to the AI Agent.",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "User Query + Access Token"
+            ],
+            "id": "0b3ad7c4-8bd3-4abb-be64-89cd04f3a182",
+            "source": {
+              "x": 490,
+              "y": 330
+            },
+            "target": {
+              "cell": "737d645f-2e3f-475a-b3b5-c864d8a38dbb",
+              "port": "ffed6c7f-5d14-4007-9cc3-5b72e9c0804d"
+            },
+            "vertices": [
+              {
+                "x": 550,
+                "y": 280
+              },
+              {
+                "x": 870,
+                "y": 280
+              }
+            ]
+          },
+          {
             "position": {
               "x": 770,
               "y": 330
