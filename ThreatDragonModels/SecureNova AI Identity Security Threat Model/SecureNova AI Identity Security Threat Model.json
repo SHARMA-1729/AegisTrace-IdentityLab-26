@@ -225,8 +225,8 @@
             "connector": "smooth",
             "data": {
               "type": "tm.Flow",
-              "name": "Prompt + API Authentication Credential",
-              "description": "",
+              "name": "LLM API Request",
+              "description": "AI Agent sends a prompt and completion request to the external LLM API, authenticated using a securely stored API key.",
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
@@ -239,7 +239,7 @@
               "trustBoundaryIds": []
             },
             "labels": [
-              "Prompt + API Authentication Credential"
+              "LLM API Request"
             ],
             "id": "c4817ad7-259c-4495-8910-11ea5318a7d1",
             "source": {
