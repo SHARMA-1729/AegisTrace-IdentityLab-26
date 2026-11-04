@@ -665,6 +665,58 @@
             ]
           },
           {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Secret Retrieval Request",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "Secret Retrieval Request"
+            ],
+            "id": "7efc2c81-04fb-4bb6-9cae-e4b8024a2def",
+            "source": {
+              "x": 1010,
+              "y": 360
+            },
+            "target": {
+              "cell": "a1507925-cb88-4442-9b39-c907d789a0d4",
+              "port": "0d1c2a71-d60e-47a8-b154-f0ce521da306"
+            },
+            "vertices": [
+              {
+                "x": 1220,
+                "y": 210
+              }
+            ]
+          },
+          {
             "position": {
               "x": 770,
               "y": 330
