@@ -43,7 +43,7 @@
           },
           {
             "position": {
-              "x": 900,
+              "x": 860,
               "y": 330
             },
             "size": {
@@ -194,20 +194,20 @@
             "labels": [
               "Data Flow"
             ],
-            "id": "79124d72-74a7-4110-91bb-9b6d40b4fd52",
+            "id": "c594a5c8-85b8-44b8-85af-d26c5e45e315",
             "source": {
-              "x": 450,
-              "y": 160
+              "cell": "cf732453-8627-4589-b057-bce6aee16a1b",
+              "port": "d3d04dc6-e284-484f-bdb2-39be19f4ff1f"
             },
             "target": {
-              "x": 790,
-              "y": 160
+              "cell": "d0304ecd-dc09-4859-9861-196d1f33a694",
+              "port": "cbea267f-0f36-4192-bb3f-2e74de130d63"
             },
             "vertices": []
           },
           {
             "position": {
-              "x": 420,
+              "x": 460,
               "y": 330
             },
             "size": {
@@ -324,6 +324,62 @@
               "privilegeLevel": "",
               "threats": []
             }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 12,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Authentication Request",
+              "description": "Human user submits authentication credentials or an authentication request to Auth0 over a secure connection.",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "Authentication Request"
+            ],
+            "id": "4fe16025-db10-4da3-ba57-42d8d09a01d2",
+            "source": {
+              "cell": "d0304ecd-dc09-4859-9861-196d1f33a694",
+              "port": "7615566b-9ff8-4117-b4a0-41413ea84bba"
+            },
+            "target": {
+              "cell": "cf732453-8627-4589-b057-bce6aee16a1b",
+              "port": "63a333e6-c06c-485a-8fe8-ba33eb142f09"
+            },
+            "vertices": [
+              {
+                "x": 850,
+                "y": 250
+              },
+              {
+                "x": 460,
+                "y": 260
+              }
+            ]
           }
         ],
         "description": "Data flow diagram showing human and non-human identities, Auth0 authentication, AI agent interactions, LLM API, RAG pipeline, MCP server, internal REST APIs, and security trust boundaries."
