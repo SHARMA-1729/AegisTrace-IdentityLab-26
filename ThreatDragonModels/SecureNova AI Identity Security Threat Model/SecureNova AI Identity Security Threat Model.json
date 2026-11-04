@@ -96,12 +96,12 @@
               "y": 280
             },
             "size": {
-              "width": 220,
+              "width": 250,
               "height": 140
             },
             "attrs": {
               "label": {
-                "text": "Trust Boundary"
+                "text": "External Model Provider Zone"
               }
             },
             "visible": true,
@@ -110,7 +110,7 @@
             "zIndex": -1,
             "data": {
               "type": "tm.BoundaryBox",
-              "name": "Trust Boundary",
+              "name": "External Model Provider Zone",
               "description": "",
               "isTrustBoundary": true,
               "hasOpenThreats": false,
