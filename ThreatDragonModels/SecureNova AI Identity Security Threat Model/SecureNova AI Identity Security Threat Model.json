@@ -3,7 +3,7 @@
   "summary": {
     "title": "SecureNova AI Identity Security Threat Model",
     "owner": "Saurav Sharma",
-    "description": "SecureNova Inc. operates an AI-powered customer service platform using an LLM-based AI agent integrated with Auth0 for human authentication and authorization. The AI agent communicates with internal REST APIs, retrieves knowledge through a Retrieval-Augmented Generation (RAG) pipeline, and invokes MCP server tools on behalf of authenticated users. The system includes human identities, non-human AI agent identities, OAuth 2.0 machine-to-machine clients, LLM API credentials, RAG service identities, and MCP server identities. This threat model evaluates identity-related attack surfaces, trust boundaries, credential security, privilege escalation, prompt injection, data poisoning, and auditability. Security controls are assessed using STRIDE, OAuth 2.0/OIDC, least privilege, Zero Trust principles, and MITRE ATLAS.",
+    "description": "Conceptual threat model for SecureNova Inc. AI-powered customer service. The design includes human identity, Auth0 as a managed external identity provider, AI Agent and MCP workload identities, an external LLM provider, RAG retrieval, internal REST APIs, a vector knowledge base and customer data. M2M clients are separated by resource audience: the AI Agent client obtains a token for MCP API access, while the MCP Server client obtains a separate token for Internal REST API access. This is a design model and does not assert that every depicted LLM, RAG, MCP or data service was implemented in the Project 2 Java application.",
     "id": 0
   },
   "detail": {
@@ -13,22 +13,22 @@
         "id": 0,
         "title": "SecureNova AI Identity System - DFD",
         "diagramType": "STRIDE",
-        "placeholder": "New STRIDE diagram description",
+        "placeholder": "SecureNova conceptual AI identity architecture and trust-boundary data-flow diagram",
         "thumbnail": "./public/content/images/thumbnail.stride.jpg",
         "version": "2.6.2",
         "cells": [
           {
             "position": {
-              "x": 90,
-              "y": 220
+              "x": 40,
+              "y": 490
             },
             "size": {
-              "width": 500,
+              "width": 250,
               "height": 190
             },
             "attrs": {
               "label": {
-                "text": "Human Identity Zone"
+                "text": "Human User Zone"
               }
             },
             "visible": true,
@@ -37,31 +37,28 @@
             "zIndex": -1,
             "data": {
               "type": "tm.BoundaryBox",
-              "name": "Human Identity Zone",
-              "description": "",
+              "name": "Human User Zone",
+              "description": "External customer/user identity zone. Human users authenticate through the managed identity provider before accessing SecureNova services.",
               "isTrustBoundary": true,
               "hasOpenThreats": false,
               "crossingFlows": [
-                "41931641-5edc-4880-b6ca-fa14a7944710",
                 "a8fd8eed-4929-41ec-b285-fdcb9754d35c",
                 "0b3ad7c4-8bd3-4abb-be64-89cd04f3a182",
-                "19ad9138-48a7-4c68-b626-84221ecc8ce3",
-                "43ec2a55-801e-4d6f-bc52-41ad52077da5"
+                "41931641-5edc-4880-b6ca-fa14a7944710"
               ],
               "containedElements": [
-                "05cd2482-f340-4269-b1bb-c751612ce2c7",
-                "cf732453-8627-4589-b057-bce6aee16a1b"
+                "05cd2482-f340-4269-b1bb-c751612ce2c7"
               ]
             }
           },
           {
             "position": {
-              "x": 560,
-              "y": 780
+              "x": 650,
+              "y": 900
             },
             "size": {
-              "width": 930,
-              "height": 340
+              "width": 1010,
+              "height": 410
             },
             "attrs": {
               "label": {
@@ -75,15 +72,14 @@
             "data": {
               "type": "tm.BoundaryBox",
               "name": "Internal API & Data Zone",
-              "description": "",
+              "description": "SecureNova internal business APIs and data services. Access is authenticated, authorized, least-privilege and auditable.",
               "isTrustBoundary": true,
               "hasOpenThreats": false,
               "crossingFlows": [
                 "8707b167-f8ed-4d34-987e-e3b7ed5115f4",
-                "67528ecf-c1cd-4d6e-a5e2-5da4e0260ccf",
-                "4f0b69ca-27d9-40c3-9596-f3e5de315f39",
+                "ddde0022-059c-4de0-a6fe-c5f873224961",
                 "3ad9a88f-3dbb-430d-b23d-5bc748e47e0f",
-                "ddde0022-059c-4de0-a6fe-c5f873224961"
+                "2135ad83-50dc-4f83-a4bb-dda6295a2a8c"
               ],
               "containedElements": [
                 "ea18073d-8729-4c1c-bf18-13167c1d73f1",
@@ -94,12 +90,12 @@
           },
           {
             "position": {
-              "x": 1310,
-              "y": 240
+              "x": 1720,
+              "y": 230
             },
             "size": {
-              "width": 230,
-              "height": 150
+              "width": 260,
+              "height": 180
             },
             "attrs": {
               "label": {
@@ -113,11 +109,12 @@
             "data": {
               "type": "tm.BoundaryBox",
               "name": "External Model Provider Zone",
-              "description": "",
+              "description": "Third-party model provider trust zone. Prompts and responses cross the SecureNova-to-provider boundary over HTTPS.",
               "isTrustBoundary": true,
               "hasOpenThreats": false,
               "crossingFlows": [
-                "c4817ad7-259c-4495-8910-11ea5318a7d1"
+                "c4817ad7-259c-4495-8910-11ea5318a7d1",
+                "792cf96c-cce8-4e06-8e61-e0108e6c56da"
               ],
               "containedElements": [
                 "dc71799b-d5e9-4859-87b2-c16b3c09f6a7"
@@ -144,8 +141,8 @@
             "connector": "smooth",
             "data": {
               "type": "tm.Flow",
-              "name": "Authentication Token Response",
-              "description": "Auth0 returns an ID token and access token to the authenticated human user after successful authentication.",
+              "name": "Human Authentication Token Response",
+              "description": "Auth0 returns the OIDC ID token and OAuth access token to the human user after successful authentication. The application validates the access token before accepting API requests.",
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
@@ -156,11 +153,12 @@
               "protocol": "HTTPS",
               "threats": [],
               "trustBoundaryIds": [
-                "7a002dda-6c04-4c7c-a541-7fa091971879"
+                "7a002dda-6c04-4c7c-a541-7fa091971879",
+                "101fef21-357c-4d4e-a94e-cc288d5bd98c"
               ]
             },
             "labels": [
-              "Authentication Token Response"
+              "Token Response"
             ],
             "id": "a8fd8eed-4929-41ec-b285-fdcb9754d35c",
             "source": {
@@ -173,12 +171,12 @@
             },
             "vertices": [
               {
-                "x": 390,
-                "y": 390
+                "x": 430,
+                "y": 655
               },
               {
-                "x": 330,
-                "y": 390
+                "x": 250,
+                "y": 655
               }
             ]
           },
@@ -203,7 +201,7 @@
             "data": {
               "type": "tm.Flow",
               "name": "User Query + Access Token",
-              "description": "Authenticated human user submits a customer service query and access token to the AI Agent.",
+              "description": "Authenticated human user submits a customer-service query and an access token to the AI Agent over HTTPS. The agent/API validates token signature, issuer, audience, expiry and required scopes before processing the request.",
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
@@ -219,12 +217,12 @@
               ]
             },
             "labels": [
-              "User Query + Access Token"
+              "User Query + Token"
             ],
             "id": "0b3ad7c4-8bd3-4abb-be64-89cd04f3a182",
             "source": {
               "cell": "05cd2482-f340-4269-b1bb-c751612ce2c7",
-              "port": "e6f3c333-39d7-485a-abb5-3de8d62c5604"
+              "port": "7615566b-9ff8-4117-b4a0-41413ea84bba"
             },
             "target": {
               "cell": "737d645f-2e3f-475a-b3b5-c864d8a38dbb",
@@ -232,12 +230,12 @@
             },
             "vertices": [
               {
-                "x": 330,
-                "y": 280
+                "x": 166,
+                "y": 220
               },
               {
-                "x": 780,
-                "y": 280
+                "x": 970,
+                "y": 220
               }
             ]
           },
@@ -262,7 +260,7 @@
             "data": {
               "type": "tm.Flow",
               "name": "LLM API Request",
-              "description": "AI Agent sends prompts and completion requests over HTTPS to the external LLM provider. Treat prompts and responses as data crossing the SecureNova-to-provider trust boundary; do not send secrets or unnecessary customer data.",
+              "description": "AI Agent sends prompts and completion requests over HTTPS to the external LLM provider. Prompts and responses cross the SecureNova-to-provider trust boundary; secrets and unnecessary customer data must not be included.",
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
@@ -291,12 +289,12 @@
             },
             "vertices": [
               {
-                "x": 1030,
-                "y": 330
+                "x": 1230,
+                "y": 270
               },
               {
-                "x": 1280,
-                "y": 330
+                "x": 1740,
+                "y": 270
               }
             ]
           },
@@ -321,28 +319,25 @@
             "data": {
               "type": "tm.Flow",
               "name": "Knowledge Retrieval Request",
-              "description": "The AI Agent sends a knowledge retrieval request to the RAG Pipeline to retrieve relevant information from the Vector Database or Knowledge Base based on the authenticated user's query.",
+              "description": "AI Agent sends a retrieval query and relevant user/session context to the RAG Pipeline. The RAG service applies authorization and tenant filters before querying the vector knowledge base.",
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
               "hasOpenThreats": false,
               "isBidirectional": false,
               "isEncrypted": true,
-              "isPublicNetwork": true,
+              "isPublicNetwork": false,
               "protocol": "HTTPS",
               "threats": [],
-              "trustBoundaryIds": [
-                "5e994c23-acbb-49f6-a6d2-c52432fffcec",
-                "c8fe2685-e98f-4ec8-bd83-a4c1351b552f"
-              ]
+              "trustBoundaryIds": []
             },
             "labels": [
-              "Knowledge Retrieval Request"
+              "RAG Query"
             ],
             "id": "d8d9108c-ed12-4b86-bcd9-156ad2aa7dc2",
             "source": {
               "cell": "737d645f-2e3f-475a-b3b5-c864d8a38dbb",
-              "port": "b3c4690a-1fa6-4ed9-b8ca-a67d72298683"
+              "port": "d3d04dc6-e284-484f-bdb2-39be19f4ff1f"
             },
             "target": {
               "cell": "4108c95e-302b-4a5a-ae04-3cb8db080ed7",
@@ -350,12 +345,16 @@
             },
             "vertices": [
               {
-                "x": 900,
-                "y": 420
+                "x": 1220,
+                "y": 320
               },
               {
-                "x": 1120,
-                "y": 600
+                "x": 1380,
+                "y": 320
+              },
+              {
+                "x": 1380,
+                "y": 540
               }
             ]
           },
@@ -380,41 +379,38 @@
             "data": {
               "type": "tm.Flow",
               "name": "Retrieved Knowledge Response",
-              "description": "The RAG Pipeline returns relevant knowledge chunks and retrieved context from the Vector Database or Knowledge Base to the AI Agent for response generation.",
+              "description": "RAG Pipeline returns relevant knowledge chunks and contextual metadata to the AI Agent. Retrieved content is treated as untrusted input and must not override system policy or authorization decisions.",
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
               "hasOpenThreats": false,
               "isBidirectional": false,
               "isEncrypted": true,
-              "isPublicNetwork": true,
+              "isPublicNetwork": false,
               "protocol": "HTTPS",
               "threats": [],
-              "trustBoundaryIds": [
-                "5e994c23-acbb-49f6-a6d2-c52432fffcec",
-                "c8fe2685-e98f-4ec8-bd83-a4c1351b552f"
-              ]
+              "trustBoundaryIds": []
             },
             "labels": [
-              "Retrieved Knowledge Response"
+              "RAG Context"
             ],
             "id": "eb4f7a9a-9c44-454c-9594-ae806fd49e89",
             "source": {
               "cell": "4108c95e-302b-4a5a-ae04-3cb8db080ed7",
-              "port": "63a333e6-c06c-485a-8fe8-ba33eb142f09"
+              "port": "ffed6c7f-5d14-4007-9cc3-5b72e9c0804d"
             },
             "target": {
               "cell": "737d645f-2e3f-475a-b3b5-c864d8a38dbb",
-              "port": "b3c4690a-1fa6-4ed9-b8ca-a67d72298683"
+              "port": "d3d04dc6-e284-484f-bdb2-39be19f4ff1f"
             },
             "vertices": [
               {
-                "x": 1120,
-                "y": 680
+                "x": 1550,
+                "y": 430
               },
               {
-                "x": 900,
-                "y": 440
+                "x": 1140,
+                "y": 430
               }
             ]
           },
@@ -438,8 +434,8 @@
             "connector": "smooth",
             "data": {
               "type": "tm.Flow",
-              "name": "Scoped M2M Access Token",
-              "description": "Auth0 returns a short-lived, signed access token to the M2M Client. The token carries the configured API audience and least-privilege scopes and is validated by the receiving API.",
+              "name": "AI Agent Scoped MCP Access Token",
+              "description": "Auth0 returns a short-lived signed access token to the AI Agent M2M Client. The token audience is the MCP API and its scopes permit only approved MCP operations. It is not the token used by the MCP Server to call Internal REST APIs.",
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
@@ -450,17 +446,17 @@
               "protocol": "HTTPS",
               "threats": [],
               "trustBoundaryIds": [
-                "7a002dda-6c04-4c7c-a541-7fa091971879",
-                "5e994c23-acbb-49f6-a6d2-c52432fffcec"
+                "5e994c23-acbb-49f6-a6d2-c52432fffcec",
+                "101fef21-357c-4d4e-a94e-cc288d5bd98c"
               ]
             },
             "labels": [
-              "Scoped M2M Access Token"
+              "Agent MCP Token"
             ],
             "id": "43ec2a55-801e-4d6f-bc52-41ad52077da5",
             "source": {
               "cell": "cf732453-8627-4589-b057-bce6aee16a1b",
-              "port": "b3c4690a-1fa6-4ed9-b8ca-a67d72298683"
+              "port": "ffed6c7f-5d14-4007-9cc3-5b72e9c0804d"
             },
             "target": {
               "cell": "6a3ac534-bc7c-48c3-95e0-da5af83bb66a",
@@ -468,16 +464,12 @@
             },
             "vertices": [
               {
-                "x": 500,
-                "y": 430
+                "x": 485,
+                "y": 400
               },
               {
-                "x": 760,
-                "y": 430
-              },
-              {
-                "x": 760,
-                "y": 520
+                "x": 630,
+                "y": 400
               }
             ]
           },
@@ -501,15 +493,15 @@
             "connector": "smooth",
             "data": {
               "type": "tm.Flow",
-              "name": "Scoped MCP-to-API Request",
-              "description": "MCP Server invokes an allowlisted Internal REST API using the scoped M2M access token. The API validates token signature, issuer, audience, expiry and required scope before authorizing the requested operation.",
+              "name": "Authorized Internal API Request",
+              "description": "MCP Server invokes an allowlisted Internal REST API over HTTPS using the separate MCP Server M2M token. The API validates the token signature, issuer, Internal API audience, expiry and required scope before authorizing the requested operation.",
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
               "hasOpenThreats": false,
               "isBidirectional": false,
               "isEncrypted": true,
-              "isPublicNetwork": true,
+              "isPublicNetwork": false,
               "protocol": "HTTPS",
               "threats": [],
               "trustBoundaryIds": [
@@ -518,7 +510,7 @@
               ]
             },
             "labels": [
-              "Authorized API Request"
+              "Internal API Request"
             ],
             "id": "8707b167-f8ed-4d34-987e-e3b7ed5115f4",
             "source": {
@@ -531,16 +523,20 @@
             },
             "vertices": [
               {
-                "x": 1095,
-                "y": 700
+                "x": 1300,
+                "y": 650
               },
               {
-                "x": 680,
-                "y": 700
+                "x": 1300,
+                "y": 850
               },
               {
-                "x": 680,
-                "y": 800
+                "x": 1010,
+                "y": 850
+              },
+              {
+                "x": 1010,
+                "y": 950
               }
             ]
           },
@@ -565,27 +561,25 @@
             "data": {
               "type": "tm.Flow",
               "name": "Customer Data Response",
-              "description": "Customer Database returns the requested customer data to the Internal REST API over the protected internal service channel.",
+              "description": "Customer Database returns only the records and fields authorized for the requesting Internal REST API operation. The API applies response filtering and records an audit event.",
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
               "hasOpenThreats": false,
               "isBidirectional": false,
               "isEncrypted": true,
-              "isPublicNetwork": true,
+              "isPublicNetwork": false,
               "protocol": "HTTPS",
               "threats": [],
-              "trustBoundaryIds": [
-                "c8fe2685-e98f-4ec8-bd83-a4c1351b552f"
-              ]
+              "trustBoundaryIds": []
             },
             "labels": [
-              "Customer Data Response"
+              "Customer Result"
             ],
             "id": "4f0b69ca-27d9-40c3-9596-f3e5de315f39",
             "source": {
               "cell": "a7c45633-2837-495a-9287-c57d390d5dd1",
-              "port": "35adf68e-0b53-4406-b02e-1ccfa1c5700c"
+              "port": "f7d04284-237a-4072-849a-c9c317b26b6e"
             },
             "target": {
               "cell": "ea18073d-8729-4c1c-bf18-13167c1d73f1",
@@ -593,12 +587,12 @@
             },
             "vertices": [
               {
-                "x": 760,
-                "y": 930
+                "x": 850,
+                "y": 1210
               },
               {
-                "x": 760,
-                "y": 900
+                "x": 850,
+                "y": 1070
               }
             ]
           },
@@ -623,7 +617,7 @@
             "data": {
               "type": "tm.Flow",
               "name": "Secret Retrieval Request",
-              "description": "AI Agent requests the LLM API credential from the restricted secret store through an authenticated workload identity; access is least-privilege and audited.",
+              "description": "AI Agent requests the LLM API credential from the restricted secret store through its authenticated workload identity. Access is least-privilege and audited.",
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
@@ -633,12 +627,10 @@
               "isPublicNetwork": false,
               "protocol": "HTTPS",
               "threats": [],
-              "trustBoundaryIds": [
-                "5e994c23-acbb-49f6-a6d2-c52432fffcec"
-              ]
+              "trustBoundaryIds": []
             },
             "labels": [
-              "Secret Retrieval Request"
+              "Get LLM Key"
             ],
             "id": "7efc2c81-04fb-4bb6-9cae-e4b8024a2def",
             "source": {
@@ -651,12 +643,12 @@
             },
             "vertices": [
               {
-                "x": 880,
-                "y": 250
+                "x": 1050,
+                "y": 210
               },
               {
-                "x": 880,
-                "y": 170
+                "x": 1080,
+                "y": 210
               }
             ]
           },
@@ -681,7 +673,7 @@
             "data": {
               "type": "tm.Flow",
               "name": "LLM API Credential",
-              "description": "The secret store supplies the LLM API credential to the AI Agent through a protected channel. The credential is never placed in prompts, user-visible responses or logs.",
+              "description": "Secret store supplies the LLM API credential to the AI Agent through a protected channel. The credential is never placed in prompts, user-visible responses or logs.",
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
@@ -691,17 +683,15 @@
               "isPublicNetwork": false,
               "protocol": "HTTPS",
               "threats": [],
-              "trustBoundaryIds": [
-                "5e994c23-acbb-49f6-a6d2-c52432fffcec"
-              ]
+              "trustBoundaryIds": []
             },
             "labels": [
-              "LLM API Credential"
+              "LLM API Key"
             ],
             "id": "f24cb136-b4b9-4e57-b1fe-927f7848996c",
             "source": {
               "cell": "a1507925-cb88-4442-9b39-c907d789a0d4",
-              "port": "0d1c2a71-d60e-47a8-b154-f0ce521da306"
+              "port": "ba723895-5113-460f-86cd-77045f0dfae3"
             },
             "target": {
               "cell": "737d645f-2e3f-475a-b3b5-c864d8a38dbb",
@@ -709,12 +699,16 @@
             },
             "vertices": [
               {
-                "x": 970,
-                "y": 170
+                "x": 1190,
+                "y": 120
               },
               {
-                "x": 970,
-                "y": 250
+                "x": 1190,
+                "y": 205
+              },
+              {
+                "x": 1090,
+                "y": 205
               }
             ]
           },
@@ -739,7 +733,7 @@
             "data": {
               "type": "tm.Flow",
               "name": "Retrieved Knowledge Chunks",
-              "description": "Vector Database / Knowledge Base returns the matching knowledge chunks and metadata to the RAG Pipeline.",
+              "description": "Vector Database returns matching knowledge chunks and metadata to the RAG Pipeline. Retrieved content is untrusted and must be checked for provenance, tenant authorization and malicious instructions.",
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
@@ -755,7 +749,7 @@
               ]
             },
             "labels": [
-              "Retrieved Knowledge Chunks"
+              "Knowledge Chunks"
             ],
             "id": "ddde0022-059c-4de0-a6fe-c5f873224961",
             "source": {
@@ -768,11 +762,11 @@
             },
             "vertices": [
               {
-                "x": 1320,
-                "y": 790
+                "x": 1580,
+                "y": 1060
               },
               {
-                "x": 1320,
+                "x": 1580,
                 "y": 700
               }
             ]
@@ -798,8 +792,8 @@
             "connector": "smooth",
             "data": {
               "type": "tm.Flow",
-              "name": "Authentication Request",
-              "description": "Human user submits authentication credentials or an authentication request to Auth0 over a secure connection.",
+              "name": "Human Authentication Request",
+              "description": "Human user starts an OIDC/OAuth 2.0 authentication flow with Auth0 over HTTPS. The application uses the configured Authorization Code flow with PKCE and validates redirect URI, state and nonce.",
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
@@ -850,7 +844,8 @@
                 }
               ],
               "trustBoundaryIds": [
-                "7a002dda-6c04-4c7c-a541-7fa091971879"
+                "7a002dda-6c04-4c7c-a541-7fa091971879",
+                "101fef21-357c-4d4e-a94e-cc288d5bd98c"
               ],
               "threatFrequency": {
                 "tampering": 1,
@@ -870,21 +865,12 @@
               "cell": "cf732453-8627-4589-b057-bce6aee16a1b",
               "port": "63a333e6-c06c-485a-8fe8-ba33eb142f09"
             },
-            "vertices": [
-              {
-                "x": 330,
-                "y": 330
-              },
-              {
-                "x": 390,
-                "y": 330
-              }
-            ]
+            "vertices": []
           },
           {
             "position": {
-              "x": 430,
-              "y": 300
+              "x": 455,
+              "y": 550
             },
             "size": {
               "width": 60,
@@ -989,7 +975,7 @@
             "data": {
               "type": "tm.Process",
               "name": "Auth0",
-              "description": "Auth0 authenticates human users using OIDC and issues identity and access tokens. It also provides OAuth 2.0 authorization services for machine-to-machine clients.",
+              "description": "Managed external identity provider. Auth0 authenticates human users using OIDC and issues ID/access tokens. It also acts as the OAuth 2.0 authorization server for two separately registered machine-to-machine clients: the AI Agent client for MCP API access and the MCP Server client for Internal REST API access.",
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
@@ -1003,8 +989,8 @@
           },
           {
             "position": {
-              "x": 150,
-              "y": 300
+              "x": 110,
+              "y": 550
             },
             "size": {
               "width": 112.5,
@@ -1120,8 +1106,8 @@
           },
           {
             "position": {
-              "x": 850,
-              "y": 300
+              "x": 1020,
+              "y": 240
             },
             "size": {
               "width": 60,
@@ -1226,7 +1212,7 @@
             "data": {
               "type": "tm.Process",
               "name": "AI Agent",
-              "description": "AI agent that processes authenticated user requests, interacts with the LLM API, retrieves knowledge through the RAG pipeline, and invokes MCP server tools on behalf of authenticated users.",
+              "description": "AI agent that processes authenticated user requests, interacts with the external LLM API, retrieves knowledge through the RAG pipeline, and invokes allowlisted MCP tools. It uses its dedicated M2M client identity to authenticate to the MCP API; that token is distinct from the MCP Server downstream API token.",
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
@@ -1240,8 +1226,8 @@
           },
           {
             "position": {
-              "x": 1370,
-              "y": 300
+              "x": 1820,
+              "y": 280
             },
             "size": {
               "width": 60,
@@ -1360,8 +1346,8 @@
           },
           {
             "position": {
-              "x": 850,
-              "y": 80
+              "x": 1020,
+              "y": 90
             },
             "size": {
               "width": 120,
@@ -1469,23 +1455,23 @@
             "data": {
               "type": "tm.Store",
               "name": "LLM API Key Store",
-              "description": "Secure storage for the LLM API credential used by the AI Agent to authenticate requests to the external LLM service.\n\n\n\nPrivilege Level: Restricted – AI service access only",
+              "description": "SecureNova-controlled secret store for the external LLM API credential. The credential is encrypted at rest, retrieved only by the authorized AI Agent workload identity, and excluded from prompts, user-visible responses and application logs. Access is least-privilege and auditable.",
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
               "hasOpenThreats": false,
               "isALog": false,
-              "isEncrypted": false,
+              "isEncrypted": true,
               "isSigned": false,
-              "storesCredentials": false,
+              "storesCredentials": true,
               "storesInventory": false,
               "threats": []
             }
           },
           {
             "position": {
-              "x": 1190,
-              "y": 560
+              "x": 1430,
+              "y": 500
             },
             "size": {
               "width": 80,
@@ -1493,7 +1479,7 @@
             },
             "attrs": {
               "text": {
-                "text": "RAG Pipeline (RAG Service Identity)"
+                "text": "RAG Pipeline"
               },
               "body": {
                 "stroke": "#333333",
@@ -1589,8 +1575,8 @@
             "zIndex": 17,
             "data": {
               "type": "tm.Process",
-              "name": "RAG Pipeline (RAG Service Identity)",
-              "description": "Retrieval-Augmented Generation service that retrieves relevant knowledge chunks from the knowledge base and returns contextual information to the AI Agent.",
+              "name": "RAG Pipeline",
+              "description": "Retrieval-Augmented Generation service identity. It applies authorization and tenant filters before retrieving knowledge chunks from the Vector Database and returns retrieved content to the AI Agent as untrusted context.",
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
@@ -1604,8 +1590,8 @@
           },
           {
             "position": {
-              "x": 1190,
-              "y": 820
+              "x": 1430,
+              "y": 1120
             },
             "size": {
               "width": 120,
@@ -1729,8 +1715,8 @@
           },
           {
             "position": {
-              "x": 1050,
-              "y": 560
+              "x": 1160,
+              "y": 500
             },
             "size": {
               "width": 90,
@@ -1738,7 +1724,7 @@
             },
             "attrs": {
               "text": {
-                "text": "MCP Server (Service Identity)"
+                "text": "MCP Server"
               },
               "body": {
                 "stroke": "#333333",
@@ -1834,8 +1820,8 @@
             "zIndex": 19,
             "data": {
               "type": "tm.Process",
-              "name": "MCP Server (Service Identity)",
-              "description": "Model Context Protocol server that exposes controlled tools to the AI Agent and invokes authorized internal services on behalf of authenticated users.",
+              "name": "MCP Server",
+              "description": "Model Context Protocol server that exposes allowlisted tools to the AI Agent. It validates the AI Agent caller and MCP-audience token, validates tool names and arguments, then invokes only authorized Internal REST APIs. For downstream API calls, it uses a separate MCP Server M2M client identity and a token intended for the Internal API.",
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
@@ -1843,14 +1829,14 @@
               "handlesCardPayment": false,
               "handlesGoodsOrServices": false,
               "isWebApplication": false,
-              "privilegeLevel": "Restricted – explicitly authorized tools only",
+              "privilegeLevel": "Restricted – allowlisted tools; least-privilege downstream API scopes",
               "threats": []
             }
           },
           {
             "position": {
-              "x": 650,
-              "y": 820
+              "x": 950,
+              "y": 980
             },
             "size": {
               "width": 60,
@@ -1988,7 +1974,7 @@
             "data": {
               "type": "tm.Flow",
               "name": "Vector Search Query",
-              "description": "RAG Pipeline sends an embedding-based similarity search query to the Vector Database / Knowledge Base using its read-only service identity.",
+              "description": "RAG Pipeline submits an authorized similarity-search query to the Vector Database using its read-only service identity and applicable tenant/access filters.",
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
@@ -2004,7 +1990,7 @@
               ]
             },
             "labels": [
-              "Vector Search Query"
+              "Vector Search"
             ],
             "id": "3ad9a88f-3dbb-430d-b23d-5bc748e47e0f",
             "source": {
@@ -2017,15 +2003,19 @@
             },
             "vertices": [
               {
-                "x": 1230,
+                "x": 1380,
                 "y": 700
+              },
+              {
+                "x": 1380,
+                "y": 1060
               }
             ]
           },
           {
             "position": {
-              "x": 620,
-              "y": 1010
+              "x": 920,
+              "y": 1180
             },
             "size": {
               "width": 120,
@@ -2166,8 +2156,8 @@
             "connector": "smooth",
             "data": {
               "type": "tm.Flow",
-              "name": "OAuth 2.0 Client Credentials Token Request",
-              "description": "The M2M Client authenticates to Auth0 using the OAuth 2.0 Client Credentials grant and requests an access token for the configured API audience and least-privilege scopes.",
+              "name": "AI Agent Client Credentials Token Request",
+              "description": "AI Agent M2M Client authenticates to Auth0 using the OAuth 2.0 Client Credentials grant to obtain a short-lived token specifically for the MCP API audience and approved MCP scopes. This is separate from the MCP Server downstream client.",
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
@@ -2178,36 +2168,23 @@
               "protocol": "HTTPS",
               "threats": [],
               "trustBoundaryIds": [
-                "7a002dda-6c04-4c7c-a541-7fa091971879",
-                "5e994c23-acbb-49f6-a6d2-c52432fffcec"
+                "5e994c23-acbb-49f6-a6d2-c52432fffcec",
+                "101fef21-357c-4d4e-a94e-cc288d5bd98c"
               ]
             },
             "labels": [
-              "Client Credentials Token Request"
+              "Agent M2M Request"
             ],
             "id": "19ad9138-48a7-4c68-b626-84221ecc8ce3",
             "source": {
               "cell": "6a3ac534-bc7c-48c3-95e0-da5af83bb66a",
-              "port": "d3603b22-4161-4ba4-b456-bc7b8e70f444"
+              "port": "f2297ff7-fdee-495b-b0a7-0414d8dc4519"
             },
             "target": {
               "cell": "cf732453-8627-4589-b057-bce6aee16a1b",
-              "port": "b3c4690a-1fa6-4ed9-b8ca-a67d72298683"
+              "port": "d3d04dc6-e284-484f-bdb2-39be19f4ff1f"
             },
-            "vertices": [
-              {
-                "x": 705,
-                "y": 520
-              },
-              {
-                "x": 705,
-                "y": 430
-              },
-              {
-                "x": 460,
-                "y": 430
-              }
-            ]
+            "vertices": []
           },
           {
             "shape": "flow",
@@ -2230,22 +2207,20 @@
             "data": {
               "type": "tm.Flow",
               "name": "Customer Data Query",
-              "description": "Internal REST API sends an authorized customer-data query to the Customer Database over the protected internal service channel.",
+              "description": "Internal REST APIs issue a parameterized, authorized query to the Customer Database using a restricted database service identity. Tenant and customer-level authorization is enforced server-side.",
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
               "hasOpenThreats": false,
               "isBidirectional": false,
               "isEncrypted": true,
-              "isPublicNetwork": true,
+              "isPublicNetwork": false,
               "protocol": "HTTPS",
               "threats": [],
-              "trustBoundaryIds": [
-                "c8fe2685-e98f-4ec8-bd83-a4c1351b552f"
-              ]
+              "trustBoundaryIds": []
             },
             "labels": [
-              "Customer Data Query"
+              "Customer Query"
             ],
             "id": "67528ecf-c1cd-4d6e-a5e2-5da4e0260ccf",
             "source": {
@@ -2256,12 +2231,7 @@
               "cell": "a7c45633-2837-495a-9287-c57d390d5dd1",
               "port": "35adf68e-0b53-4406-b02e-1ccfa1c5700c"
             },
-            "vertices": [
-              {
-                "x": 680,
-                "y": 900
-              }
-            ]
+            "vertices": []
           },
           {
             "shape": "flow",
@@ -2284,22 +2254,20 @@
             "data": {
               "type": "tm.Flow",
               "name": "MCP Tool Invocation",
-              "description": "AI Agent sends a tool invocation request to the MCP Server. The server validates the caller identity, tool allowlist and arguments before invoking an authorized internal API.",
+              "description": "AI Agent sends a tool invocation request to the MCP Server. The server validates the caller using the MCP-audience token, checks the tool allowlist and arguments, and rejects unauthorized or out-of-policy calls.",
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
               "hasOpenThreats": false,
               "isBidirectional": false,
               "isEncrypted": true,
-              "isPublicNetwork": true,
+              "isPublicNetwork": false,
               "protocol": "HTTPS",
               "threats": [],
-              "trustBoundaryIds": [
-                "5e994c23-acbb-49f6-a6d2-c52432fffcec"
-              ]
+              "trustBoundaryIds": []
             },
             "labels": [
-              "MCP Tool Invocation"
+              "Tool Invocation"
             ],
             "id": "591720ce-28b5-41a5-a90f-98038507926b",
             "source": {
@@ -2312,42 +2280,18 @@
             },
             "vertices": [
               {
-                "x": 900,
-                "y": 430
+                "x": 1050,
+                "y": 380
               },
               {
-                "x": 1095,
-                "y": 430
+                "x": 1205,
+                "y": 380
               },
               {
-                "x": 1095,
-                "y": 520
+                "x": 1205,
+                "y": 470
               }
             ]
-          },
-          {
-            "position": {
-              "x": 625,
-              "y": 460
-            },
-            "size": {
-              "width": 112.5,
-              "height": 60
-            },
-            "attrs": {
-              "text": {
-                "text": "Agent Layer"
-              }
-            },
-            "visible": true,
-            "shape": "td-text-block",
-            "id": "df2fc8b0-19a4-4a9d-9307-f83b4e8b3e56",
-            "zIndex": 31,
-            "data": {
-              "type": "tm.Text",
-              "name": "Agent Layer",
-              "hasOpenThreats": false
-            }
           },
           {
             "position": {
@@ -2375,12 +2319,12 @@
           },
           {
             "position": {
-              "x": 600,
+              "x": 650,
               "y": 40
             },
             "size": {
-              "width": 700,
-              "height": 710
+              "width": 1010,
+              "height": 820
             },
             "attrs": {
               "label": {
@@ -2394,28 +2338,27 @@
             "data": {
               "type": "tm.BoundaryBox",
               "name": "AI Agent & Orchestration Zone",
-              "description": "",
+              "description": "SecureNova-managed AI application and orchestration workloads, including the AI Agent, its MCP-facing OAuth client identity, MCP Server, its separate downstream OAuth client identity, RAG service and restricted LLM credential store.",
               "isTrustBoundary": true,
               "hasOpenThreats": false,
               "crossingFlows": [
                 "0b3ad7c4-8bd3-4abb-be64-89cd04f3a182",
                 "c4817ad7-259c-4495-8910-11ea5318a7d1",
-                "d8d9108c-ed12-4b86-bcd9-156ad2aa7dc2",
-                "eb4f7a9a-9c44-454c-9594-ae806fd49e89",
-                "7efc2c81-04fb-4bb6-9cae-e4b8024a2def",
-                "f24cb136-b4b9-4e57-b1fe-927f7848996c",
-                "19ad9138-48a7-4c68-b626-84221ecc8ce3",
                 "43ec2a55-801e-4d6f-bc52-41ad52077da5",
-                "591720ce-28b5-41a5-a90f-98038507926b",
-                "02954301-179d-4d6f-bbd4-95fb5dae6c48",
                 "8707b167-f8ed-4d34-987e-e3b7ed5115f4",
+                "ddde0022-059c-4de0-a6fe-c5f873224961",
                 "3ad9a88f-3dbb-430d-b23d-5bc748e47e0f",
-                "ddde0022-059c-4de0-a6fe-c5f873224961"
+                "19ad9138-48a7-4c68-b626-84221ecc8ce3",
+                "96f70686-7153-4b5b-a76d-d9c0098c74d2",
+                "9b5413ea-8b09-4fea-9dd0-73cb33193519",
+                "792cf96c-cce8-4e06-8e61-e0108e6c56da",
+                "2135ad83-50dc-4f83-a4bb-dda6295a2a8c"
               ],
               "containedElements": [
                 "737d645f-2e3f-475a-b3b5-c864d8a38dbb",
                 "6a3ac534-bc7c-48c3-95e0-da5af83bb66a",
                 "507415f6-608e-465d-b615-09b447dd8583",
+                "6d6b1d08-88f9-48f9-b4e0-cd0ccfc2dea9",
                 "4108c95e-302b-4a5a-ae04-3cb8db080ed7",
                 "a1507925-cb88-4442-9b39-c907d789a0d4"
               ]
@@ -2423,8 +2366,8 @@
           },
           {
             "position": {
-              "x": 650,
-              "y": 560
+              "x": 700,
+              "y": 440
             },
             "size": {
               "width": 110,
@@ -2432,7 +2375,7 @@
             },
             "attrs": {
               "text": {
-                "text": "M2M Client"
+                "text": "Agent M2M Client"
               },
               "body": {
                 "stroke": "#333333",
@@ -2528,15 +2471,15 @@
             "zIndex": 19,
             "data": {
               "type": "tm.Process",
-              "name": "M2M Client (AI Agent Workload Identity)",
-              "description": "OAuth 2.0 machine-to-machine client representing the non-human workload identity used by the SecureNova AI Agent/MCP integration. It authenticates to Auth0 using the client credentials grant, receives a scoped access token, and presents that token to authorized internal APIs. Client credentials must be held in a secrets manager and never embedded in prompts or logs.",
+              "name": "Agent M2M Client",
+              "description": "Dedicated OAuth 2.0 machine-to-machine client identity for the AI Agent when it calls the MCP API. It uses the Client Credentials grant to obtain a short-lived access token whose audience is the MCP API and whose scopes are limited to approved MCP operations. Client credentials are held in a secret manager and must never be embedded in prompts or logs.",
               "outOfScope": false,
               "reasonOutOfScope": "",
               "hasOpenThreats": false,
               "handlesCardPayment": false,
               "handlesGoodsOrServices": false,
               "isWebApplication": false,
-              "privilegeLevel": "Least-privilege OAuth scopes; workload identity",
+              "privilegeLevel": "Least-privilege MCP API scopes; workload identity",
               "threats": []
             }
           },
@@ -2560,23 +2503,21 @@
             "connector": "smooth",
             "data": {
               "type": "tm.Flow",
-              "name": "M2M Access Token Presented to MCP Server",
-              "description": "M2M Client presents its short-lived scoped access token to the MCP Server. The MCP Server validates issuer, signature, audience, expiry and required scopes before accepting tool requests.",
+              "name": "AI Agent MCP API Access Token",
+              "description": "AI Agent M2M Client presents its short-lived MCP-audience token to the MCP Server with the tool invocation. The MCP Server validates issuer, signature, audience, expiry and required MCP scopes before accepting the request.",
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
               "hasOpenThreats": false,
               "isBidirectional": false,
               "isEncrypted": true,
-              "isPublicNetwork": true,
+              "isPublicNetwork": false,
               "protocol": "HTTPS",
               "threats": [],
-              "trustBoundaryIds": [
-                "5e994c23-acbb-49f6-a6d2-c52432fffcec"
-              ]
+              "trustBoundaryIds": []
             },
             "labels": [
-              "M2M Token to MCP Server"
+              "MCP Access Token"
             ],
             "id": "02954301-179d-4d6f-bbd4-95fb5dae6c48",
             "source": {
@@ -2589,12 +2530,540 @@
             },
             "vertices": [
               {
-                "x": 800,
-                "y": 590
+                "x": 900,
+                "y": 472
               },
               {
-                "x": 1020,
-                "y": 590
+                "x": 1080,
+                "y": 472
+              }
+            ]
+          },
+          {
+            "position": {
+              "x": 350,
+              "y": 490
+            },
+            "size": {
+              "width": 260,
+              "height": 190
+            },
+            "attrs": {
+              "label": {
+                "text": "External Auth0 Zone"
+              }
+            },
+            "visible": true,
+            "shape": "trust-boundary-box",
+            "id": "101fef21-357c-4d4e-a94e-cc288d5bd98c",
+            "zIndex": -1,
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "External Auth0 Zone",
+              "description": "Managed external identity-provider zone. Auth0 authenticates human users and issues OAuth 2.0 access tokens to separately registered machine-to-machine clients.",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false,
+              "crossingFlows": [
+                "a8fd8eed-4929-41ec-b285-fdcb9754d35c",
+                "43ec2a55-801e-4d6f-bc52-41ad52077da5",
+                "41931641-5edc-4880-b6ca-fa14a7944710",
+                "19ad9138-48a7-4c68-b626-84221ecc8ce3",
+                "96f70686-7153-4b5b-a76d-d9c0098c74d2",
+                "9b5413ea-8b09-4fea-9dd0-73cb33193519"
+              ],
+              "containedElements": [
+                "cf732453-8627-4589-b057-bce6aee16a1b"
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 700,
+              "y": 770
+            },
+            "size": {
+              "width": 110,
+              "height": 65
+            },
+            "attrs": {
+              "text": {
+                "text": "MCP M2M Client"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "d8cb9072-d3ce-4042-a3f2-ab7b1f614a3f"
+                },
+                {
+                  "group": "right",
+                  "id": "daca95c0-2392-4630-b8a0-b0be6465e848"
+                },
+                {
+                  "group": "bottom",
+                  "id": "de114be5-4025-4063-9847-75153451fd50"
+                },
+                {
+                  "group": "left",
+                  "id": "791becd2-5b08-4d85-b771-cbca13d75816"
+                }
+              ]
+            },
+            "id": "6d6b1d08-88f9-48f9-b4e0-cd0ccfc2dea9",
+            "zIndex": 19,
+            "data": {
+              "type": "tm.Process",
+              "name": "MCP M2M Client",
+              "description": "Separate OAuth 2.0 machine-to-machine client identity used by the MCP Server workload for downstream calls to Internal REST APIs. It uses its own Client Credentials grant and receives a short-lived token with the Internal REST API audience and only the required API scopes. This identity is distinct from the AI Agent M2M client used to access the MCP API. Client credentials are protected in a secret manager.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "Least-privilege Internal REST API scopes; workload identity",
+              "threats": []
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 57,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "MCP Server Client Credentials Token Request",
+              "description": "MCP Server M2M Client authenticates to Auth0 with its own Client Credentials grant to obtain a short-lived token intended for the Internal REST API audience. This client registration is distinct from the AI Agent M2M client and uses only the scopes required by approved downstream API operations.",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": [],
+              "trustBoundaryIds": [
+                "5e994c23-acbb-49f6-a6d2-c52432fffcec",
+                "101fef21-357c-4d4e-a94e-cc288d5bd98c"
+              ]
+            },
+            "labels": [
+              "MCP M2M Request"
+            ],
+            "id": "96f70686-7153-4b5b-a76d-d9c0098c74d2",
+            "source": {
+              "cell": "6d6b1d08-88f9-48f9-b4e0-cd0ccfc2dea9",
+              "port": "791becd2-5b08-4d85-b771-cbca13d75816"
+            },
+            "target": {
+              "cell": "cf732453-8627-4589-b057-bce6aee16a1b",
+              "port": "b3c4690a-1fa6-4ed9-b8ca-a67d72298683"
+            },
+            "vertices": [
+              {
+                "x": 650,
+                "y": 802
+              },
+              {
+                "x": 600,
+                "y": 802
+              },
+              {
+                "x": 600,
+                "y": 650
+              },
+              {
+                "x": 485,
+                "y": 650
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 57,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "MCP Server Scoped Internal API Access Token",
+              "description": "Auth0 returns a short-lived signed access token to the MCP Server M2M Client. The token audience is the Internal REST API and its scopes are restricted to the MCP Server workload’s approved downstream operations.",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": [],
+              "trustBoundaryIds": [
+                "5e994c23-acbb-49f6-a6d2-c52432fffcec",
+                "101fef21-357c-4d4e-a94e-cc288d5bd98c"
+              ]
+            },
+            "labels": [
+              "MCP API Token"
+            ],
+            "id": "9b5413ea-8b09-4fea-9dd0-73cb33193519",
+            "source": {
+              "cell": "cf732453-8627-4589-b057-bce6aee16a1b",
+              "port": "ffed6c7f-5d14-4007-9cc3-5b72e9c0804d"
+            },
+            "target": {
+              "cell": "6d6b1d08-88f9-48f9-b4e0-cd0ccfc2dea9",
+              "port": "d8cb9072-d3ce-4042-a3f2-ab7b1f614a3f"
+            },
+            "vertices": [
+              {
+                "x": 485,
+                "y": 480
+              },
+              {
+                "x": 630,
+                "y": 480
+              },
+              {
+                "x": 630,
+                "y": 740
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 57,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "MCP Server Internal API Access Token",
+              "description": "MCP Server M2M Client makes its Internal REST API-audience access token available to the MCP Server workload through a protected internal channel. The token is used only for the authorized downstream API request.",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "Internal API Token"
+            ],
+            "id": "8960001a-cb8c-41f7-87e6-20d291d72718",
+            "source": {
+              "cell": "6d6b1d08-88f9-48f9-b4e0-cd0ccfc2dea9",
+              "port": "daca95c0-2392-4630-b8a0-b0be6465e848"
+            },
+            "target": {
+              "cell": "507415f6-608e-465d-b615-09b447dd8583",
+              "port": "b3c4690a-1fa6-4ed9-b8ca-a67d72298683"
+            },
+            "vertices": [
+              {
+                "x": 900,
+                "y": 802
+              },
+              {
+                "x": 1205,
+                "y": 802
+              },
+              {
+                "x": 1205,
+                "y": 630
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 57,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "LLM API Response",
+              "description": "External LLM API returns the model completion to the AI Agent over HTTPS. The response is untrusted model output and is subject to output validation and safety controls.",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": [],
+              "trustBoundaryIds": [
+                "5e994c23-acbb-49f6-a6d2-c52432fffcec",
+                "dcb19570-a1a7-4ae1-ad6a-2bfa48af4a92"
+              ]
+            },
+            "labels": [
+              "LLM API Response"
+            ],
+            "id": "792cf96c-cce8-4e06-8e61-e0108e6c56da",
+            "source": {
+              "cell": "dc71799b-d5e9-4859-87b2-c16b3c09f6a7",
+              "port": "63a333e6-c06c-485a-8fe8-ba33eb142f09"
+            },
+            "target": {
+              "cell": "737d645f-2e3f-475a-b3b5-c864d8a38dbb",
+              "port": "d3d04dc6-e284-484f-bdb2-39be19f4ff1f"
+            },
+            "vertices": [
+              {
+                "x": 1750,
+                "y": 390
+              },
+              {
+                "x": 1150,
+                "y": 390
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 57,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Internal API Response",
+              "description": "Internal REST APIs return only the authorized operation result to the MCP Server. The response is filtered to the minimum required data and correlated with the originating agent/user request for audit.",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": [],
+              "trustBoundaryIds": [
+                "5e994c23-acbb-49f6-a6d2-c52432fffcec",
+                "c8fe2685-e98f-4ec8-bd83-a4c1351b552f"
+              ]
+            },
+            "labels": [
+              "Internal API Response"
+            ],
+            "id": "2135ad83-50dc-4f83-a4bb-dda6295a2a8c",
+            "source": {
+              "cell": "ea18073d-8729-4c1c-bf18-13167c1d73f1",
+              "port": "ffed6c7f-5d14-4007-9cc3-5b72e9c0804d"
+            },
+            "target": {
+              "cell": "507415f6-608e-465d-b615-09b447dd8583",
+              "port": "b3c4690a-1fa6-4ed9-b8ca-a67d72298683"
+            },
+            "vertices": [
+              {
+                "x": 870,
+                "y": 900
+              },
+              {
+                "x": 870,
+                "y": 740
+              },
+              {
+                "x": 1100,
+                "y": 740
+              },
+              {
+                "x": 1100,
+                "y": 630
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 57,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "MCP Tool Result",
+              "description": "MCP Server returns the tool execution result to the AI Agent after validating the tool response and applying output/data minimization. The result is correlated with the original tool invocation.",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "Tool Result"
+            ],
+            "id": "b6b5e89b-2324-4f90-9141-a9677fbed286",
+            "source": {
+              "cell": "507415f6-608e-465d-b615-09b447dd8583",
+              "port": "ffed6c7f-5d14-4007-9cc3-5b72e9c0804d"
+            },
+            "target": {
+              "cell": "737d645f-2e3f-475a-b3b5-c864d8a38dbb",
+              "port": "d3d04dc6-e284-484f-bdb2-39be19f4ff1f"
+            },
+            "vertices": [
+              {
+                "x": 1330,
+                "y": 460
+              },
+              {
+                "x": 1120,
+                "y": 460
               }
             ]
           }
